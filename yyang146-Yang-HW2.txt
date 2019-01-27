@@ -1,0 +1,257 @@
+//  Created by Yang on 22/09/2018.
+//  Copyright © 2018 Yang. All rights reserved.
+//
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <stack>
+#include <deque>
+
+using namespace std;
+
+class pos {
+public:
+    int id;//0...63
+    bool visited;
+    bool in_wait;
+    int from_id;
+    pos() { id = -1; visited = false; in_wait = false; from_id = -1; }
+    int move(int k) {
+        int new_id;
+        switch(k){
+            case 1:{
+                //new_id=(this->id)-6;
+                //return new_id;
+                if(((this->id)%8==6)||((this->id)%8==7)||((this->id)>=0&&(this->id)<=7)){
+                    return -1;
+                }else{
+                    new_id=(this->id)-6;
+                    return new_id;
+                }
+                break;
+            }
+            case 2:{
+                //new_id=(this->id)-15;
+                //return new_id;
+                if((this->id)%8==7||((this->id)>=8&&(this->id)<=15)||((this->id)>=0&&(this->id)<=7)){
+                    return -1;
+                }else{
+                    new_id=(this->id)-15;
+                    return new_id;
+                }
+                break;
+            }
+            case 3:{
+                //new_id=(this->id)-17;
+                //return new_id;
+                if(((this->id)>=0&&(this->id)<=7)||(this->id)%8==0||((this->id)>=8&&(this->id)<=15)){
+                    return -1;
+                }else{
+                    new_id=(this->id)-17;
+                    return new_id;
+                }
+                break;
+            }
+            case 4:{
+                //new_id=(this->id)-10;
+                //return new_id;
+                if((this->id)%8==0||(this->id)%8==1||((this->id)>=0&&(this->id)<=7)){
+                    return -1;
+                }else{
+                    new_id=(this->id)-10;
+                    return new_id;
+                }
+                break;
+            }
+            case 5:{
+                //new_id=(this->id)+6;
+                //return new_id;
+                if((this->id)%8==0||(this->id)%8==1||((this->id)>=56&&(this->id)<=63)){
+                    return -1;
+                }else{
+                    new_id=(this->id)+6;
+                    return new_id;
+                }
+                break;
+            }
+            case 6:{
+                //new_id=(this->id)+15;
+                //return new_id;
+                if((this->id)%8==0||((this->id)>=48&&(this->id)<=63)){
+                    return -1;
+                }else{
+                    new_id=(this->id)+15;
+                    return new_id;
+                }
+                break;
+            }
+            case 7:{
+                //new_id=(this->id)+17;
+                //return new_id;
+                if((this->id)%8==7||((this->id)>=48&&(this->id)<=63)){
+                    return -1;
+                }else{
+                    new_id=(this->id)+17;
+                    return new_id;
+                }
+                break;
+            }
+            case 8:{
+                //new_id=(this->id)+10;
+                //return new_id;
+                if(((this->id)>=56&&(this->id)<=63)||(this->id)%8==6||(this->id)%8==7){
+                    return -1;
+                }else{
+                    new_id=(this->id)+10;
+                    return new_id;
+                }
+                break;
+            }
+                //default:
+                //  break;
+        }
+        return 0;
+    }
+};
+
+void print_path(vector<pos> &board, int k);
+void data_input(int &start_id, int &end_id);
+void BFS(vector<pos> &board, int &start_id, int &end_id);
+void DFS(vector<pos> &board, int &start_id, int &end_id);
+
+
+//You are not allowed to modify main or class pos.
+//For class pos, you need to implement move functiion
+//will explain this in class.
+int main() {
+    vector<pos> board(64);
+    for (int i = 0; i < 64; i++) board[i].id = i;
+    //queue<int> Queue;
+    int start_id = -1 , end_id = -1; //legal values are 0 ... 63
+    data_input(start_id, end_id);
+    BFS(board, start_id, end_id);
+    for (int i = 0; i < 64; i++) {
+        board[i].id = i;
+        board[i].visited = false;
+        board[i].in_wait = false;
+        board[i].from_id = -1;
+    }
+    DFS(board, start_id, end_id);
+    
+    getchar();
+    getchar();
+    return 0;
+}
+
+void data_input(int &start_id, int &end_id) {
+    char i1,i2;
+    int  j1,j2;
+    cout<<"Enter starting position --- x is in a...h and y is in 1...8"<<endl;
+    cin>>i1>>j1;
+    cout<<"Enter ending position --- x is in a...h and y is in 1...8"<<endl;
+    cin>>i2>>j2;
+    
+    int z1=i1-97;
+    int z2=i2-97;
+    
+    start_id=(8*(j1-1))+z1;
+    end_id=(8*(j2-1))+z2;
+    
+    //cout<<start_id<<endl;
+    //cout<<end_id<<endl;
+}
+
+void BFS(vector<pos> &board, int &start_id, int &end_id) {
+    queue<int> q;
+    int q_top;
+    q.push(start_id);
+    board[start_id].in_wait=true;
+    board[start_id].visited=true;
+    while(!q.empty()){
+        if(q.front()!=end_id){
+            q_top=q.front();
+            //cout<<q_top<<" ";
+            q.pop();
+            board[q_top].visited=true;
+            for(int i=1;i<=8;i++){
+                if(board[q_top].move(i)!= -1){
+                    if(board[board[q_top].move(i)].visited==false && board[board[q_top].move(i)].in_wait==false){
+                        q.push(board[q_top].move(i));
+                        //board[board[s_top].move(i)].visited=true;
+                        board[board[q_top].move(i)].in_wait=true;
+                        board[board[q_top].move(i)].from_id = q_top;
+                    }
+                }if(q.front()==end_id){
+                    board[board[q_top].move(i)].from_id = q_top;
+                    print_path(board,end_id);
+                    break;
+                }
+                
+            }
+        }
+    }
+    if(board[start_id].id==board[end_id].id&&board[end_id].id>63){
+        cout<<"No solution is possible"<<endl;
+    }
+}
+
+
+void DFS(vector<pos> &board, int &start_id, int &end_id) {
+    stack<int> s;
+    int s_top;
+    //initialize state of node
+    s.push(start_id);
+    board[start_id].in_wait=true;
+    
+    board[start_id].visited=true;
+    board[start_id].from_id=-1;
+    
+    while(!s.empty())//&& s.top() <= 63 &&s.top()!=end_id
+    {
+        if(s.top()!=end_id){
+            s_top=s.top();
+            board[s_top].in_wait=true;
+            //cout<<s_top<<" ";
+            s.pop();
+            board[s_top].visited=true;
+            for(int i=1;i<=8;i++){
+                if(board[s_top].move(i)!= -1){
+                    if(board[board[s_top].move(i)].visited==false && board[board[s_top].move(i)].in_wait==false){
+                        s.push(board[s_top].move(i));
+                        //board[board[s_top].move(i)].visited=true;
+                        board[board[s_top].move(i)].in_wait=true;
+                        board[board[s_top].move(i)].from_id = s_top;
+                    }
+                }if(s.top()==end_id){
+                    board[board[s_top].move(i)].from_id = s_top;
+                    print_path(board,end_id);
+                }
+                
+            }
+        }
+        if(board[start_id].id==board[end_id].id&&board[end_id].id>63){
+            cout<<"No solution is possible"<<endl;
+        }
+    }
+}
+
+void print_path(vector<pos> &board,int k){
+    cout<<"Target is reached"<<endl;
+    int a1,b1;
+    char y;
+    a1=(k/8)+1;
+    b1=k%8;
+    y=b1+'a';
+    cout<<"("<<y<<","<<a1<<")"<<" ";
+    
+    while(board[k].from_id!=-1){
+        int prev=board[k].from_id;
+        a1=(prev/8)+1;
+        b1=prev%8;
+        y=b1+'a';
+        cout<<"<--("<<y<<","<<a1<<")";
+        k=board[k].from_id;}
+    cout<<endl;
+    return;
+    
+}
