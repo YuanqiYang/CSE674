@@ -1,0 +1,189 @@
+//
+//  main.cpp
+//  hw4
+//
+//  Created by 杨苑琦 on 10/12/2018.
+//  Copyright © 2018 杨苑琦. All rights reserved.
+//
+
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <list>
+using namespace std;
+
+class e_node { //stands for edge node
+public:
+    int nb;//the neighbor of a currently considered node
+    int weight; //weight of the edge to the above neighbor
+    e_node() {}//constructor
+};
+
+class rt_node { //rt stands for routing table
+public:
+    int cost;  //cost to a node
+    int from;  //the from node to this node
+    int selected;
+    int h_pos; //the position in heap for this node
+    rt_node() { cost = 9999; from = -1; selected = 0; }
+};
+
+
+class h_node { //stands for heap_node
+public:
+    int id;
+    int cost;
+    h_node() { id = -1; cost = 9999; }
+    h_node(int i, int j) { id = i; cost = j; }
+    bool operator<(h_node h) { return (cost < h.cost); }
+};
+
+void set_up(vector<rt_node> &rt, vector<h_node> & heap, int &start); //Insert the souce node to heap and update rt and heap accordingly
+void swap_up(vector<rt_node> &rt, vector<h_node> & heap,int &n);
+void swap_down(vector<rt_node> & rt, vector<h_node> & heap);
+void select_node(vector<list<e_node>> & graph, vector<rt_node> & rt, vector<h_node> &heap);
+void neighbor_update(vector<list<e_node>> & graph, vector<rt_node> & rt, vector<h_node> & heap, int &s);
+
+int main() {
+    
+    ifstream in("text1.txt");
+    int start;
+    in>>start;
+    int n, e; //n: num of nodes ; e: num of edges
+    in >> n >> e;
+    list<e_node> le;
+    vector<list<e_node> > graph(n, le);
+    e_node e1;
+    int n1, n2, w;
+    for (int i = 0; i < e; i++) {
+        in >> n1 >> n2 >> w;
+        e1.nb = n2;
+        e1.weight = w;
+        graph[n1].push_back(e1);
+    }
+    in.close();
+    vector<rt_node> rt(n);
+    vector<h_node> heap(n);
+    
+    set_up(rt, heap, start);
+    select_node(graph, rt, heap);
+    int  overall_cost=0;
+    
+    for (int i = 0; i < n; i++) {
+        cout << "cost from " << i << " is: " << rt[i].cost << "  from node is " << rt[i].from << endl;
+        overall_cost += rt[i].cost;
+       
+    }
+    cout << "The overall cost is " << overall_cost << endl;
+    getchar();
+    getchar();
+    return 0;
+}
+
+
+void set_up(vector<rt_node> &rt, vector<h_node> & heap, int &start) {
+    rt[start].from = start;
+    rt[start].cost = 0;
+    for (int i = 0; i < heap.size(); i++) {
+        heap[i].id = i;
+        rt[i].h_pos = i;
+    }
+    heap[start].cost=0;
+    heap[0].id=start;
+    
+    swap_up(rt, heap, start);
+    
+}
+
+
+
+void swap_down(vector<rt_node> & rt, vector<h_node> & heap) {
+    int parent=0;//nodes may need to be adjusted
+    int flag = 0;//flag is used to mark whether it needs to continue to swap down
+    h_node h;
+    while (parent < heap.size()&& flag == 0)
+    {
+        if ((parent  * 2 + 2) < heap.size()) {
+            if (heap[parent  * 2 + 2] < heap[parent]&&heap[parent * 2 + 1] < heap[parent* 2 + 2])
+            {
+                rt[heap[parent  * 2 + 1].id].h_pos = parent ;
+                rt[heap[parent ].id].h_pos =parent  * 2 + 1;
+                h = heap[parent];
+                heap[parent] = heap[parent  * 2 + 1];
+                heap[parent* 2 + 1] = h;
+                parent=parent* 2 + 1;//After the exchange, starting from the position of the child node being exchanged
+               flag = 0;
+            }else if(heap[parent  * 2 + 1] < heap[parent] && heap[parent * 2 + 2] < heap[parent* 2 + 1]){
+                rt[heap[parent * 2 + 2].id].h_pos = parent ;
+                rt[heap[parent].id].h_pos = parent  * 2 + 2;
+                h = heap[parent];
+                heap[parent] = heap[parent  * 2 + 2];
+                heap[parent * 2 + 2] = h;
+                parent=parent * 2 + 2;
+                flag= 0;
+            }
+        }
+        else if ((parent * 2 + 1) < heap.size()) {
+            if (heap[2 *parent  + 1] < heap[parent ]) {
+                rt[heap[parent ].id].h_pos = 2 * parent + 1;
+                rt[heap[2 * parent  + 1].id].h_pos = parent ;
+                h = heap[parent];
+                heap[parent ] = heap[parent * 2 + 1];
+                heap[parent  * 2 + 1] = h;
+                flag = 0;
+                parent  = parent  * 2 + 1;
+            }
+        }
+         flag = 1;
+    }
+}
+
+void swap_up(vector<rt_node> & rt, vector<h_node> & heap,int &n) {
+    int index1 = n;
+    h_node h;
+    while (index1 != 0 )
+    {
+        if (heap[index1] < heap[(index1 - 1) / 2]) {
+            rt[heap[index1].id].h_pos = (index1 - 1) / 2;
+            rt[heap[(index1 - 1) / 2].id].h_pos = index1;
+            h = heap[index1];
+            heap[index1] = heap[(index1 - 1) / 2];
+            heap[(index1 - 1) / 2] = h;
+            index1 = (index1 - 1) / 2;
+        }else break;
+    }
+}
+
+
+void select_node(vector<list<e_node>> & graph, vector<rt_node> & rt, vector<h_node> &heap) {
+    h_node h;
+    while(heap.size()!=0){
+        int s = heap[0].id;
+        rt[heap[0].id].selected = 1;
+        h=heap[0];
+        heap[0]=heap[heap.size() - 1];
+        heap[heap.size() - 1]=h;
+        rt[heap[0].id].h_pos = 0;
+        heap.pop_back();
+        swap_down(rt, heap);
+        
+        neighbor_update(graph,rt,heap,s);
+        
+    }
+}
+
+void neighbor_update(vector<list<e_node>> & graph, vector<rt_node> & rt, vector<h_node> & heap, int &s){
+    list<e_node>:: iterator it1;
+    it1=graph[s].begin();
+    // it1++;
+    while(it1!=graph[s].end()){
+        if (rt[(*it1).nb].selected ==0 &&(*it1).weight < rt[(*it1).nb].cost) {
+            rt[(*it1).nb].cost = (*it1).weight;
+            rt[(*it1).nb].from = s;
+            heap[rt[(*it1).nb].h_pos].cost = rt[(*it1).nb].cost;
+            swap_up(rt, heap, rt[(*it1).nb].h_pos);
+        }
+        it1++;
+        
+    }
+}
