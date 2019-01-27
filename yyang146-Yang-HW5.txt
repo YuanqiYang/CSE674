@@ -7,10 +7,6 @@
 //
 
 
-
-
-
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -88,101 +84,6 @@ int main()
     KMP(T,P2);
     string P3=s1+s2+s2+s2+s2+s3;
     KMP(T,P3);
-    string P4=s1+s2+s2+s2+s2+s2+s3;
-    KMP(T,P4);
-    string P5=s1+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P5);
-    string P6=s1+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P6);
-    string P7=s1+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P7);
-    string P8=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T, P8);
-    string P9=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P9);
-    string P10=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P10);
-    string P11=s1+s3;
-    KMP(T,P11);
-    string P12=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P12);
-    string P13=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P13);
-    string P14=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P14);
-    string P15=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P15);
-    string P16=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P16);
-    string P17=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P17);
-    string P18=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P18);
-    string P19=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P19);
-    string P20=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P20);
-    string P21=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P21);
-    string P22=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P22);
-    string P23=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P23);
-    string P24=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P24);
-    string P25=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P25);
-    string P26=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P26);
-    string P27=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P27);
-    string P28=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P28);
-    string P29=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P29);
-    string P30=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P30);
-    string P31=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P31);
-    string P32=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P32);
-    string P33=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P33);
-    string P34=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P34);
-    string P35=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P35);
-    string P36=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P36);
-    string P37=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P37);
-    string P38=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P38);
-    string P39=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P39);
-    string P40=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P40);
-    string P41=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P41);
-    string P42=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P42);
-    string P43=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P43);
-    string P44=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P44);
-    string P45=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P45);
-    string P46=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P46);
-    string P47=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P47);
-    string P48=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P48);
-    string P49=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P49);
-    string P50=s1+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s2+s3;
-    KMP(T,P50);
-    
     
     cin.get();
     cin.get();
